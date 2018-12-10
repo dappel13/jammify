@@ -1,0 +1,21 @@
+{% extends 'music/base.html'%}
+{% block list_active %}active{% endblock %}
+{% block body %}
+<div class="list- container container-fluid">
+    <h1>Your Playlists</h1>
+        <ul>
+            {% for list in object_list %}
+            <li><a href="{% url 'music:detail' list.id %}" >{{ list.list_name}}</a></li>
+
+        </ul>
+
+        <a href="{% url 'music:list-update' list.id %}" class="btn btn-primary btn-sm" role="button">Update Name</a>
+
+        <form action="{% url 'music:list-delete' list.id %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <input type="hidden" name="list_id" value="{{ list.id }}" />
+                <button type="submit" class="btn btn-default btn-sm">Delete</button>
+        </form>
+            {% endfor %}
+</div>
+{% endblock %}

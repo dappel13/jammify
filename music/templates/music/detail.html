@@ -1,0 +1,20 @@
+{% extends 'music/base.html'%}
+{% block title %}Playlist{% endblock %}
+{% block body %}
+    <h1>{{ list.list_name}}</h1>
+
+<ul class="align-right">
+     <li class="">
+         <a href="{% url 'music:song-add' %}">
+             <span aria-hidden="true"></span>&nbsp;Add New Song
+         </a>
+     </li>
+</ul>
+    <ul>
+        <h3>SONG - ARTIST</h3>
+
+          {% for list in object_list %}
+            <li>{{ song.song_name}} - {{ song.artist_name }}</li>
+    </ul>
+            {% endfor %}
+{% endblock %}
